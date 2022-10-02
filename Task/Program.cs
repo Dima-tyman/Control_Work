@@ -1,6 +1,18 @@
 ﻿Console.Clear();
 
-string[] array = {"hello", "2", "world", ":-)"};
+int length;
+Console.Write("Введите количество значений, которое хотите ввести: ");
+while(!int.TryParse(Console.ReadLine(), out length)) Console.Write("Введите число: ");
+
+//ввод строк пользователем
+string[] FillArray (int len) {
+    string[] result = new string[len];
+    for (int i = 0; i < result.Length; i++) {
+        Console.Write($"Введите строку {i+1}: ");
+        result[i] = Console.ReadLine();
+        }
+    return result;
+}
 
 //определение длины получаемого массива строк
 int GetLengthArray (string[] arr) {
@@ -18,6 +30,9 @@ void SelectValue (string[] newArr, string[] oldArr) {
         j++;
         }
 }
+
+string[] array = FillArray(length);
+Console.Clear();
 
 Console.WriteLine($"Начальный массив: {string.Join(", ", array)}");
 string[] newArray = new string[GetLengthArray(array)];
