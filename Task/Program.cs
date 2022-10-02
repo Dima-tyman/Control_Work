@@ -1,9 +1,5 @@
 ﻿Console.Clear();
 
-int length;
-Console.Write("Введите количество значений, которое хотите ввести: ");
-while(!int.TryParse(Console.ReadLine(), out length)) Console.Write("Введите число: ");
-
 //ввод строк пользователем
 string[] FillArray (int len) {
     string[] result = new string[len];
@@ -31,7 +27,25 @@ void SelectValue (string[] newArr, string[] oldArr) {
         }
 }
 
-string[] array = FillArray(length);
+string[] defaultArray = {"hello", "2", "world", ":-)"};
+
+string anyValue = String.Empty;
+Console.WriteLine("Введите любое значений и нажмите <Enter>, если хотите ввести свои строки.");
+Console.WriteLine("Если хотите продолжить со строками по умолчанию, нажмите <Enter>.");
+anyValue = Console.ReadLine();
+
+string[] array;
+if (anyValue == String.Empty) {
+    array = new string[defaultArray.Length];
+    Array.Copy(defaultArray, array, defaultArray.Length);
+    }
+else {
+    Console.Clear();
+    int length;
+    Console.Write("Введите количество значений, которое хотите ввести: ");
+    while(!int.TryParse(Console.ReadLine(), out length)) Console.Write("Введите число: ");
+    array = FillArray(length);
+}
 Console.Clear();
 
 Console.WriteLine($"Начальный массив: {string.Join(", ", array)}");
