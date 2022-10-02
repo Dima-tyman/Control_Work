@@ -11,23 +11,24 @@ string[] FillArray (int len) {
 }
 
 //определение длины получаемого массива строк
-int GetLengthArray (string[] arr) {
+int GetLengthArray (string[] arr, int limit) {
     int sum = 0;
     for (int i = 0; i < arr.Length; i++)
-        if (arr[i].Length <= 3) sum++;
+        if (arr[i].Length <= limit) sum++;
     return sum;
 }
 
-//заполнение нового массива значениями с длиной равной или меньше 3 символа
-void SelectValue (string[] newArr, string[] oldArr) {
+//заполнение нового массива значениями с длиной равной или меньше n (limitString) символа
+void SelectValue (string[] newArr, string[] oldArr, int limit) {
     for (int i = 0, j = 0; i < oldArr.Length; i++)
-        if (oldArr[i].Length <= 3) {
+        if (oldArr[i].Length <= limit) {
         newArr[j] = oldArr[i];
         j++;
         }
 }
 
 string[] defaultArray = {"hello", "2", "world", ":-)"};
+int limitString = 3;
 
 string anyValue = String.Empty;
 Console.WriteLine("Введите любое значений и нажмите <Enter>, если хотите ввести свои строки.");
@@ -49,6 +50,6 @@ else {
 Console.Clear();
 
 Console.WriteLine($"Начальный массив: {string.Join(", ", array)}");
-string[] newArray = new string[GetLengthArray(array)];
-SelectValue (newArray, array);
-Console.WriteLine($"Массив со значениями с длинной равной или меньше 3 символа: {string.Join(", ", newArray)}");
+string[] newArray = new string[GetLengthArray(array, limitString)];
+SelectValue (newArray, array, limitString);
+Console.WriteLine($"Массив со значениями с длинной равной или меньше {limitString} символа: {string.Join(", ", newArray)}");
